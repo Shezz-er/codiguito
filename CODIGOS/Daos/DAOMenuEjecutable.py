@@ -81,7 +81,7 @@ class DAOMenuEjecutable:
             dao3.listarInventario
             producto=int(input("¿Qué producto desea agregar?"))
             cantidad=int(input("¿Cuánto deseas agregar?"))
-            #genera detalle
+            
             seguir=input("¿Deseas agregar otro producto?")
             if seguir==si:
                 return 
