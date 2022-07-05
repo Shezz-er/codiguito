@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Tablas.pedido_ventas import pedido_ventas
+from pedido_ventas import pedido_ventas
 from datetime import datetime
 import mysql.connector
 

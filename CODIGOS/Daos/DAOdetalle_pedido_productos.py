@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Tablas.detalle_pedido_productos import detalle_pedido_productos
+from detalle_pedido_productos import detalle_pedido_productos
 import mysql.connector
 
 @dataclass

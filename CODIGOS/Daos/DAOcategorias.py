@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Tablas.categorias import categorias
+from categorias import categorias
 import mysql.connector
 
 @dataclass

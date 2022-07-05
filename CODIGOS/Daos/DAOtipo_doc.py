@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Tablas.tipo_doc import tipo_doc
+from tipo_doc import tipo_doc
 import mysql.connector
 
 @dataclass

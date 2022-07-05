@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Tablas.personas import personas
+from personas import personas
 import mysql.connector
 
 @dataclass

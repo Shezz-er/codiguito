@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Tablas.inventario import inventario
+from inventario import inventario
 import mysql.connector
 
 @dataclass

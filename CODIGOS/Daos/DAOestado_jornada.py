@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Tablas.estado_jornada import estado_jornada
+from estado_jornada import estado_jornada
 import mysql.connector
 
 @dataclass
