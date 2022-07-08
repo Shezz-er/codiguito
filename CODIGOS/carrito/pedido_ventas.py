@@ -10,4 +10,4 @@ class pedido_ventas:
     monto: int
     iddoc: int
     rut_cliente: int
-    iddt: int
+    detalle: list

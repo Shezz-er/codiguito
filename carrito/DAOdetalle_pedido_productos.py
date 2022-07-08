@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from CODIGOS.carrito.clases_carrito import Registro_detalle
 from detalle_pedido_productos import detalle_pedido_productos
 import mysql.connector
 conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
@@ -92,8 +93,9 @@ def obtenerDetallePedido(idpedido):
     query=f"SELECT * FROM detalle_pedido_productos WHERE idpedido={idpedido} ;"
     cursor.execute(query)
     conexion.commit()
-    resultado=cursor.fetchall()
-    return resultado
+    resultado=cursor.fetchone()
+    return Registro_detalle(resultado[0],resultado[1],resultado[2],resultado[3])
+
 
 def borrarDetalle(idpedido):
     query=f"DELETE FROM detalle_pedido_productos WHERE idpedido={idpedido} ;"

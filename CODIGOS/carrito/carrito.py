@@ -2,7 +2,6 @@ from DAOpedido_ventas import listarIDsPedidos
 from clases_carrito import *
 from DAOinventario import *
 from DAOdetalle_pedido_productos import *
-import math
 
 #devuelve ultimo id de pedido:int
 def obtenerUltimoIDPedido():
@@ -29,6 +28,13 @@ def agregarAlCarro(pedido,producto,cantidad):
     pedido.detalle.append(id_detalle)
     return
 
+def emitirDocumento(pedido,tipo_documento):
+    if tipo_documento==1:
+        
+
+
+
+
 '''
 def agregarProducto(pedido,cod_prod,cantidad):
     id_detalle=insertarDetalle(pedido.idpedido,cod_prod,cantidad)
@@ -40,28 +46,6 @@ def agregarProducto(pedido,cod_prod,cantidad):
 
 def buscarProducto(busqueda):
 '''
-
 def calcularIVA(valor):
-    return math.ceil(valor*0.19)
+    return valor*0.19
 
-def obtenerPrecioProducto(cod_prod):
-    producto=obtenerProducto(cod_prod)
-    return producto.valor
-
-def obtenerSubtotalProducto(iddt):
-    detalle=obtenerDetallePedido(iddt)
-    valor_unidad=obtenerPrecioProducto(detalle.cod_prod)
-    return detalle.cantidad*valor_unidad
-
-def generarBoleta(pedido):
-    subtotal=0
-    for i in pedido.detalle:
-        subtotal=subtotal+ obtenerSubtotalProducto(i)
-    total=subtotal+calcularIVA(subtotal)
-    return Boleta(pedido,total)
-
-def generarFactura():
-    return
-
-def emitirDocumento(pedido):
-    return

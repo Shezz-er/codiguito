@@ -3,14 +3,17 @@ from DAOpedido_ventas import DAOpedido_ventas
 from DAOinventario import DAOinventario
 from DAOpersonas import DAOpersonas
 from DAOdetalle_pedido_productos import DAOdetalle_pedido_productos
+from carrito.carrito import *
+
+
 
 dao1=DAOpersonas
 dao2=DAOpedido_ventas
 dao3=DAOinventario
 dao4=DAOdetalle_pedido_productos
 
-@dataclass
 
+@dataclass
 class DAOMenuEjecutable:
 
     def ejecutarMenuJefeventa():
@@ -59,16 +62,11 @@ class DAOMenuEjecutable:
         else:
             input("Error, debe ingresar una opción válida.")
 
-    def ejecutarMenuVendedor():
-        print ("Bienvenido, Vendedor")
+    def ejecutarMenuVendedor(vendedor):
+        print ("\nBienvenido al Sistema ", vendedor.nombre)
         print ("M E N Ú")
         print ("--------------------------")
         print ("1. Agregar Venta")
-        #listar todos los productos
-        #que producto desea agregar?
-        #apretar el "codigo del producto"
-        #cuantos?
-
         print ("2. Modificar Venta")
         print ("3. Eliminar Venta")
         print ("4. Buscar Venta")
@@ -77,16 +75,21 @@ class DAOMenuEjecutable:
         print ("\nSeleccione una opción:\n")
         opcion=int(input())        
 
-        while opcion==1:
-            dao3.listarInventario
-            producto=int(input("¿Qué producto desea agregar?"))
-            cantidad=int(input("¿Cuánto deseas agregar?"))
-            
-            seguir=input("¿Deseas agregar otro producto?")
-            if seguir==si:
-                return 
+        if opcion==1:
+            pedido=generarPedido(vendedor.id)
+            while True:
+                busqueda=input("Ingrese el producto: \n")
+                producto=buscarProducto(busqueda)
+                cantidad=int(input("Ingrese cantidad \n"))
+                agregarAlCarro(pedido,producto,cantidad)
+                repetir=input("¿Desea agregar otro producto? SI[s] / NO[n] \n")
+                if repetir=="s":
+                    return True
+                else:
+                    break
+            tipo_doc=input("Seleccione tipo de documento\n [1] Boleta \n [2] Factura \n")
+            if tipo_doc==1:
+                boleta = generarBoleta(pedido)
+                
 
-            elif seguir==no #generar boleta
-
-            else 
-        
+                return True
