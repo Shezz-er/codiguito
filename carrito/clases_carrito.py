@@ -17,7 +17,7 @@ class Cliente:
     razon: str
     giro: str
     direccion: str
-    
+
 @dataclass
 class Producto:
     cod_prod: int
@@ -56,6 +56,4 @@ class Registro_detalle:
     cod_prod: int
     idpedido: int
     cantidad: int
-
-
 
