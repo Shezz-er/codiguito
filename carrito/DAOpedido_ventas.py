@@ -82,6 +82,10 @@ def borrarDetalle(iddt):
     cursor.execute(query)
     conexion.commit()
     return'''
+def insertarPedido(pedido):
+    query="INSERT INTO pedido_ventas VALUES(%s,%s,NOW(),NULL,NULL,NULL"
+    cursor.execute(query,(pedido.idpedido,pedido.vendedor.id,))
+    return
 
 def listarIDsPedidos():
     query="SELECT idpedido FROM pedido_ventas;"

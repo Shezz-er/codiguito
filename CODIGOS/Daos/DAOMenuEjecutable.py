@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+
+from numpy import format_float_positional
 from DAOpedido_ventas import DAOpedido_ventas
 from DAOinventario import DAOinventario
 from DAOpersonas import DAOpersonas
@@ -76,7 +78,7 @@ class DAOMenuEjecutable:
         opcion=int(input())        
 
         if opcion==1:
-            pedido=generarPedido(vendedor.id)
+            pedido=generarPedido(vendedor)
             while True:
                 busqueda=input("Ingrese el producto: \n")
                 producto=buscarProducto(busqueda)
@@ -90,6 +92,7 @@ class DAOMenuEjecutable:
             tipo_doc=input("Seleccione tipo de documento\n [1] Boleta \n [2] Factura \n")
             if tipo_doc==1:
                 boleta = generarBoleta(pedido)
+                vistaPrevia(boleta,1)
                 
 
                 return True

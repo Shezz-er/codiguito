@@ -1,4 +1,5 @@
 from DAOpedido_ventas import listarIDsPedidos
+from carrito.DAOpedido_ventas import insertarPedido
 from clases_carrito import *
 from DAOinventario import *
 from DAOdetalle_pedido_productos import *
@@ -22,7 +23,9 @@ def buscarProducto(busqueda):
 
 
 def generarPedido(vendedor):
-    return Pedido(obtenerUltimoIDPedido()+1,vendedor,list())
+    pedido = Pedido(obtenerUltimoIDPedido()+1,vendedor,list())
+    insertarPedido(pedido)
+    return pedido
 
 def agregarAlCarro(pedido,producto,cantidad):
     id_detalle=insertarDetalle(pedido.idpedido,producto.cod_prod,cantidad)
@@ -55,10 +58,40 @@ def obtenerSubtotalProducto(iddt):
 
 def generarBoleta(pedido):
     subtotal=0
-    for i in pedido.detalle:
-        subtotal=subtotal+ obtenerSubtotalProducto(i)
+    for iddt in pedido.detalle:
+        subtotal=subtotal+ obtenerSubtotalProducto(iddt)
     total=subtotal+calcularIVA(subtotal)
     return Boleta(pedido,total)
+
+def vistaPrevia(documento,tipo_documento):
+    if tipo_documento==1:
+        print("VISTA PREVIA DE LA BOLETA\n")
+        print("----------------------------")
+        print("Pedido Nro: ",documento.pedido.idpedido)
+        print("Vendedor: ",documento.pedido.vendedor.nombre)
+        print("Detalle de Productos\n+++++++++++++++++++++++")
+        imprimirDetalleBoleta(documento)
+        print("+++++++++++++++++++++++")
+        print("Total a pagar: ",documento.total)
+    elif tipo_documento==2:
+        print("VISTA PREVIA DE LA FACTURA\n")
+        print("----------------------------")
+        print("Pedido Nro: ",documento.pedido.idpedido)
+        print("Vendedor: ",documento.pedido.vendedor.nombre)
+        print("Detalle de Productos\n+++++++++++++++++++++++")
+        imprimirDetalleBoleta(documento)
+        print("+++++++++++++++++++++++")
+
+
+
+def imprimirDetalleBoleta(boleta):
+    print("        Código de Producto -- Producto -- Cantidad -- Valor unidad -- Subtotal")
+    print("        -----------------------------------------------------------------------")
+    for i in boleta.pedido.detalle:
+        detalle=obtenerDetallePedido(i)
+        producto=obtenerProducto(detalle.cod_prod)
+        print("        ",detalle.cod_prod," -- ",producto.nom_prod," -- ",detalle.cantidad," -- ",producto.valor," -- ",detalle.cantidad*producto.valor)
+    return
 
 def generarFactura():
     return

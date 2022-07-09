@@ -80,25 +80,15 @@ def mostrarDetalle(iddt):
     detalle=cursor.fetchone()
     return detalle
 
-def borrarDetalle(iddt):
-    query=f"DELETE FROM detalle_pedido_productos WHERE iddt={iddt} ;"
-    cursor.execute(query)
-    conexion.commit()
-    return
+
 
 
 
 #metodos de pedido_ventas
-def obtenerDetallePedido(idpedido):
-    query=f"SELECT * FROM detalle_pedido_productos WHERE idpedido={idpedido} ;"
-    cursor.execute(query)
-    conexion.commit()
+def obtenerDetallePedido(iddt):
+    query="SELECT * FROM detalle_pedido_productos WHERE iddt=%s ;"
+    cursor.execute(query,(iddt,))
     resultado=cursor.fetchone()
     return Registro_detalle(resultado[0],resultado[1],resultado[2],resultado[3])
 
-
-def borrarDetalle(idpedido):
-    query=f"DELETE FROM detalle_pedido_productos WHERE idpedido={idpedido} ;"
-    cursor.execute(query)
-    conexion.commit()
 

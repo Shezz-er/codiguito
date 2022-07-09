@@ -1,6 +1,23 @@
 from dataclasses import dataclass
 from datetime import datetime
+@dataclass
+class Vendedor:
+    id: int
+    rut: str
+    nombre: str
+    apellido: str
+    telefono: int
+    direccion: str
+    email_user: str
+    password: str
 
+@dataclass
+class Cliente:
+    rut: str
+    razon: str
+    giro: str
+    direccion: str
+    
 @dataclass
 class Producto:
     cod_prod: int
@@ -15,12 +32,12 @@ class Tipo_doc:
 @dataclass
 class Pedido:
     idpedido: int
-    vendedor: int
+    vendedor: Vendedor
     detalle: list
 
 @dataclass
 class Boleta:
-    pedido:int
+    pedido:Pedido
     total:int
 
 @dataclass
@@ -40,22 +57,5 @@ class Registro_detalle:
     idpedido: int
     cantidad: int
 
-@dataclass
-class Vendedor:
-    id: int
-    rut: str
-    nombre: str
-    apellido: str
-    telefono: int
-    direccion: str
-    email_user: str
-    password: str
 
-@dataclass
-class Cliente:
-    rut: str
-    nombre: str
-    apellido: str
-    direccion: str
-    telefono: int
 
