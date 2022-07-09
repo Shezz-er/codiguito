@@ -1,18 +1,18 @@
 from dataclasses import dataclass
 
 from numpy import format_float_positional
-from DAOpedido_ventas import DAOpedido_ventas
-from DAOinventario import DAOinventario
+# from DAOpedido_ventas import DAOpedido_ventas
+# from DAOinventario import DAOinventario
 from DAOpersonas import DAOpersonas
-from DAOdetalle_pedido_productos import DAOdetalle_pedido_productos
+# from DAOdetalle_pedido_productos import DAOdetalle_pedido_productos
 from carrito.carrito import *
 
 
 
 dao1=DAOpersonas
-dao2=DAOpedido_ventas
-dao3=DAOinventario
-dao4=DAOdetalle_pedido_productos
+# dao2=DAOpedido_ventas
+# dao3=DAOinventario
+# dao4=DAOdetalle_pedido_productos
 
 
 @dataclass
@@ -69,9 +69,6 @@ class DAOMenuEjecutable:
         print ("M E N Ú")
         print ("--------------------------")
         print ("1. Agregar Venta")
-        print ("2. Modificar Venta")
-        print ("3. Eliminar Venta")
-        print ("4. Buscar Venta")
         print ("5. Buscar Producto")
         print ("6. Listar Productos")
         print ("\nSeleccione una opción:\n")
@@ -93,6 +90,7 @@ class DAOMenuEjecutable:
             if tipo_doc==1:
                 boleta = generarBoleta(pedido)
                 vistaPrevia(boleta,1)
-                
-
                 return True
+            elif tipo_doc==2:
+                rut=int(input("Ingrese rut de cliente, sin puntos ni guion\n"))
+                cliente=obtenerClienteRut(rut)

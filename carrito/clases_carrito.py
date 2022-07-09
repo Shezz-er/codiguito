@@ -13,7 +13,7 @@ class Vendedor:
 
 @dataclass
 class Cliente:
-    rut: str
+    rut: int
     razon: str
     giro: str
     direccion: str
@@ -42,10 +42,8 @@ class Boleta:
 
 @dataclass
 class Factura:
-    pedido:int
-    rut_cliente:int
-    giro:str
-    direccion:str
+    pedido:Pedido
+    cliente:Cliente
     neto:int
     iva:int
     total:int

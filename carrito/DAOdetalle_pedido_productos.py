@@ -80,10 +80,6 @@ def mostrarDetalle(iddt):
     detalle=cursor.fetchone()
     return detalle
 
-
-
-
-
 #metodos de pedido_ventas
 def obtenerDetallePedido(iddt):
     query="SELECT * FROM detalle_pedido_productos WHERE iddt=%s ;"
