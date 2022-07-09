@@ -2,10 +2,9 @@ from dataclasses import dataclass
 
 from numpy import format_float_positional
 from carrito.data_access.clases_carrito import Vendedor
-# from DAOpedido_ventas import DAOpedido_ventas
-# from DAOinventario import DAOinventario
+from carrito.carrito import *
 from DAOpersonas import DAOpersonas
-# from DAOdetalle_pedido_productos import DAOdetalle_pedido_productos
+
 
 
 
@@ -75,7 +74,7 @@ class DAOMenuEjecutable:
         opcion=int(input())        
 
         if opcion==1:
-            pedido=generarPedido(vendedor)
+            pedido= generarPedido(vendedor)
             while True:
                 busqueda=input("Ingrese el producto: \n")
                 producto=buscarProducto(busqueda)
