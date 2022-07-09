@@ -79,8 +79,3 @@ def listarProductos():
     cursor.execute(query)
     lista=cursor.fetchall()
     return lista
-
-
-
-
-    

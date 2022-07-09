@@ -96,16 +96,16 @@ def listarIDsPedidos():
         ids.append(resultado[i][0])
     return ids
 
-def actualizarPedido(idpedido,total,tipo_doc):
-    query="UPDATE pedido_ventas SET fecha=CURRENT_TIME(), monto=%s, iddoc=%s WHERE idpedido=%s ;"
-    cursor.execute(query,(total,tipo_doc,idpedido))
-    conexion.commit()
-    return 
-    # if rut_cliente==0:
-        
-    # else:
-    #     query="UPDATE pedido_ventas SET fecha=CURRENT_TIME(), monto=%s, iddoc=%s, rut_cliente=%s WHERE idpedido=%s ;"
-    #     cursor.execute(query,(total,tipo_doc,rut_cliente,idpedido))
-    #     conexion.commit()
-    #     return 
+def actualizarPedido(idpedido,total,tipo_doc,rut_cliente):
+    
+    if rut_cliente==0:
+        query="UPDATE pedido_ventas SET fecha=CURRENT_TIME(), monto=%s, iddoc=%s WHERE idpedido=%s ;"
+        cursor.execute(query,(total,tipo_doc,idpedido))
+        conexion.commit()
+        return 
+    else:
+        query="UPDATE pedido_ventas SET fecha=CURRENT_TIME(), monto=%s, iddoc=%s, rut_cliente=%s WHERE idpedido=%s ;"
+        cursor.execute(query,(total,tipo_doc,rut_cliente,idpedido))
+        conexion.commit()
+        return 
     

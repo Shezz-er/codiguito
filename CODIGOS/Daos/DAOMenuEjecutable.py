@@ -84,19 +84,20 @@ class DAOMenuEjecutable:
                 agregarAlCarro(pedido,producto,cantidad)
                 repetir=input("¿Desea agregar otro producto? SI[s] / NO[n] \n")
                 if repetir=="s":
-                    return True
+                    True
                 else:
                     print(obtenerSubtotalProducto(pedido.detalle[0]))
                     print(pedido.idpedido)
                     print(pedido.vendedor.id)
                     break
-            tipo_doc=input("Seleccione tipo de documento\n [1] Boleta \n [2] Factura \n")
+
+            tipo_doc=int(input("Seleccione tipo de documento\n [1] Boleta \n [2] Factura \n"))
             if tipo_doc==1:
                 boleta = generarBoleta(pedido)
-                vistaPrevia(boleta,1)
-                return True
+                vistaPrevia(boleta,1)    
             elif tipo_doc==2:
-                rut=int(input("Ingrese rut de cliente, sin puntos ni guion\n"))
-                cliente=obtenerClienteRut(rut)
+                factura=generarFactura(pedido)
+                vistaPrevia(factura,2)
+                
 
 DAOMenuEjecutable.ejecutarMenuVendedor(Vendedor(1,"9766975-6","Rodrigo","Rosales",91924488,"Serena 123","rod_ros@gmail.com","RodROSS321"))

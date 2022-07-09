@@ -43,19 +43,30 @@ def obtenerSubtotalProducto(iddt):
     valor_unidad=obtenerPrecioProducto(detalle.cod_prod)
     return detalle.cantidad*valor_unidad
 
-def generarBoleta(pedido):
+def obtenerSubtotalNeto(pedido):
     subtotal=0
     for iddt in range(len(pedido.detalle)):
         subtotal=subtotal+ obtenerSubtotalProducto(pedido.detalle[iddt])
-    total=subtotal+calcularIVA(subtotal)
-    actualizarPedido(pedido.idpedido,total,1)
+    return subtotal
+
+def generarBoleta(pedido):
+    subtotal_neto=obtenerSubtotalNeto(pedido)
+    total=subtotal_neto+calcularIVA(subtotal_neto)
+    actualizarPedido(pedido.idpedido,total,1,0)
     return Boleta(pedido,total)
 
+#retorna objeto cliente
 def obtenerClienteRut(rut):
     #if consultarRut(rut)
     return
 
 def generarFactura(pedido):
+    rut=int(input("Ingrese rut de cliente, sin puntos ni guion\n"))
+    cliente=obtenerClienteRut(rut)
+    neto=obtenerSubtotalNeto(pedido)
+    iva=calcularIVA(neto)
+    total=neto+iva
+    actualizarPedido(pedido.idpedido,total,2,rut)
     return
 
 def imprimirDetalleBoleta(boleta):
