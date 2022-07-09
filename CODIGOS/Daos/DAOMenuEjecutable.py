@@ -5,7 +5,7 @@ from numpy import format_float_positional
 # from DAOinventario import DAOinventario
 from DAOpersonas import DAOpersonas
 # from DAOdetalle_pedido_productos import DAOdetalle_pedido_productos
-from carrito.carrito import *
+from carrito import *
 
 
 
@@ -94,3 +94,4 @@ class DAOMenuEjecutable:
             elif tipo_doc==2:
                 rut=int(input("Ingrese rut de cliente, sin puntos ni guion\n"))
                 cliente=obtenerClienteRut(rut)
+
