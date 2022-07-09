@@ -1,9 +1,11 @@
 from dataclasses import dataclass
 
 from numpy import format_float_positional
-from carrito.data_access.clases_carrito import Vendedor
-from carrito.carrito import *
+#from carrito.carrito import *
+import carrito.carrito as carro
 from DAOpersonas import DAOpersonas
+
+
 
 
 

@@ -1,7 +1,7 @@
-from data_access.DAOdetalle_pedido_productos import *
-from data_access.DAOinventario import *
-from data_access.clases_carrito import *
-from data_access.DAOpedido_ventas import *
+from carrito.DAOdetalle_pedido_productos import *
+from DAOinventario import *
+from DAOpedido_ventas import *
+
 
 import math
 
@@ -27,7 +27,7 @@ def generarPedido(vendedor):
     return pedido
 
 def agregarAlCarro(pedido,producto,cantidad):
-    id_detalle=insertarDetalle(pedido.idpedido,producto.cod_prod,cantidad)
+    id_detalle=dao_dt.insertarDetalle(pedido.idpedido,producto.cod_prod,cantidad)
     pedido.detalle.append(id_detalle)
     return
 
