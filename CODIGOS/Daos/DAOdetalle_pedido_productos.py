@@ -1,6 +1,5 @@
 
-#from clases_carrito import *
-import clases_carrito
+from clases_carrito import *
 import mysql.connector
 conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
 cursor = conexion.cursor()
@@ -85,6 +84,6 @@ def obtenerDetallePedido(iddt):
     query="SELECT * FROM detalle_pedido_productos WHERE iddt=%s ;"
     cursor.execute(query,(iddt,))
     resultado=cursor.fetchone()
-    return clases_carrito.Registro_detalle(resultado[0],resultado[1],resultado[2],resultado[3])
+    return Registro_detalle(resultado[0],resultado[1],resultado[2],resultado[3])
 
 

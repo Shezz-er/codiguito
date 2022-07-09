@@ -82,12 +82,13 @@ def borrarDetalle(iddt):
     conexion.commit()
     return'''
 def insertarPedido(pedido):
-    query="INSERT INTO pedido_ventas VALUES(%s,%s,NULL,NULL,NULL,NULL"
-    cursor.execute(query,(pedido.idpedido,pedido.vendedor.id,))
+    query="INSERT INTO pedido_ventas VALUES(%s,%s,NULL,NULL,NULL,NULL);"
+    cursor.execute(query,(pedido.idpedido,pedido.vendedor.id))
+    conexion.commit()
     return
 
 def listarIDsPedidos():
-    query="SELECT idpedido FROM pedido_ventas;"
+    query="SELECT idpedido FROM pedido_ventas ORDER BY idpedido ASC;"
     cursor.execute(query)
     resultado=cursor.fetchall()
     ids=[]
@@ -95,11 +96,16 @@ def listarIDsPedidos():
         ids.append(resultado[i][0])
     return ids
 
-def actualizarPedido(idpedido,total,tipo_doc,rut_cliente):
-    if rut_cliente is None:
-        query="UPDATE pedido_ventas SET fecha=NOW(), monto=%s, iddoc=%s WHERE idpedido=%s ;"
-        cursor.execute(query,(total,tipo_doc,idpedido))
-    else:
-        query="UPDATE pedido_ventas SET fecha=NOW(), monto=%s, iddoc=%s, rut_cliente=%s WHERE idpedido=%s ;"
-        cursor.execute(query,(total,tipo_doc,rut_cliente,idpedido))
-    return
+def actualizarPedido(idpedido,total,tipo_doc):
+    query="UPDATE pedido_ventas SET fecha=CURRENT_TIME(), monto=%s, iddoc=%s WHERE idpedido=%s ;"
+    cursor.execute(query,(total,tipo_doc,idpedido))
+    conexion.commit()
+    return 
+    # if rut_cliente==0:
+        
+    # else:
+    #     query="UPDATE pedido_ventas SET fecha=CURRENT_TIME(), monto=%s, iddoc=%s, rut_cliente=%s WHERE idpedido=%s ;"
+    #     cursor.execute(query,(total,tipo_doc,rut_cliente,idpedido))
+    #     conexion.commit()
+    #     return 
+    

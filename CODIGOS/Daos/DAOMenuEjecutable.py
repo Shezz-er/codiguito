@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from numpy import format_float_positional
 #from carrito.carrito import *
-import carrito.carrito as carro
+from carrito import *
 from DAOpersonas import DAOpersonas
 
 
@@ -86,6 +86,9 @@ class DAOMenuEjecutable:
                 if repetir=="s":
                     return True
                 else:
+                    print(obtenerSubtotalProducto(pedido.detalle[0]))
+                    print(pedido.idpedido)
+                    print(pedido.vendedor.id)
                     break
             tipo_doc=input("Seleccione tipo de documento\n [1] Boleta \n [2] Factura \n")
             if tipo_doc==1:

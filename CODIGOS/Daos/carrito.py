@@ -1,4 +1,4 @@
-from carrito.DAOdetalle_pedido_productos import *
+from DAOdetalle_pedido_productos import *
 from DAOinventario import *
 from DAOpedido_ventas import *
 
@@ -27,7 +27,7 @@ def generarPedido(vendedor):
     return pedido
 
 def agregarAlCarro(pedido,producto,cantidad):
-    id_detalle=dao_dt.insertarDetalle(pedido.idpedido,producto.cod_prod,cantidad)
+    id_detalle=insertarDetalle(pedido.idpedido,producto.cod_prod,cantidad)
     pedido.detalle.append(id_detalle)
     return
 
@@ -45,10 +45,10 @@ def obtenerSubtotalProducto(iddt):
 
 def generarBoleta(pedido):
     subtotal=0
-    for iddt in pedido.detalle:
-        subtotal=subtotal+ obtenerSubtotalProducto(iddt)
+    for iddt in range(len(pedido.detalle)):
+        subtotal=subtotal+ obtenerSubtotalProducto(pedido.detalle[iddt])
     total=subtotal+calcularIVA(subtotal)
-    actualizarPedido(pedido.idpedido,total,1,None)
+    actualizarPedido(pedido.idpedido,total,1)
     return Boleta(pedido,total)
 
 def obtenerClienteRut(rut):
@@ -87,3 +87,4 @@ def vistaPrevia(documento,tipo_documento):
         print("Detalle de Productos\n+++++++++++++++++++++++")
         imprimirDetalleBoleta(documento)
         print("+++++++++++++++++++++++")
+    return
