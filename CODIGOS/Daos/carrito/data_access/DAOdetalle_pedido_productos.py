@@ -1,6 +1,5 @@
-from dataclasses import dataclass
-from carrito.clases_carrito import Registro_detalle
-from detalle_pedido_productos import detalle_pedido_productos
+
+from clases_carrito import *
 import mysql.connector
 conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
 cursor = conexion.cursor()

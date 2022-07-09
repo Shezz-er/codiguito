@@ -1,8 +1,8 @@
-from DAOpedido_ventas import listarIDsPedidos
-from carrito.DAOpedido_ventas import actualizarPedido, insertarPedido
-from clases_carrito import *
-from DAOinventario import *
-from DAOdetalle_pedido_productos import *
+from data_access.DAOdetalle_pedido_productos import *
+from data_access.DAOinventario import *
+from data_access.clases_carrito import *
+from data_access.DAOpedido_ventas import *
+
 import math
 
 #devuelve ultimo id de pedido:int

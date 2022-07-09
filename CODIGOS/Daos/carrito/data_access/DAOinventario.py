@@ -1,5 +1,4 @@
-from dataclasses import dataclass
-from inventario import inventario
+
 import mysql.connector
 from clases_carrito import *
 

@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 
 from numpy import format_float_positional
+from carrito.data_access.clases_carrito import Vendedor
 # from DAOpedido_ventas import DAOpedido_ventas
 # from DAOinventario import DAOinventario
 from DAOpersonas import DAOpersonas
 # from DAOdetalle_pedido_productos import DAOdetalle_pedido_productos
-from carrito import *
 
 
 
@@ -95,3 +95,4 @@ class DAOMenuEjecutable:
                 rut=int(input("Ingrese rut de cliente, sin puntos ni guion\n"))
                 cliente=obtenerClienteRut(rut)
 
+DAOMenuEjecutable.ejecutarMenuVendedor(Vendedor(1,"9766975-6","Rodrigo","Rosales",91924488,"Serena 123","rod_ros@gmail.com","RodROSS321"))

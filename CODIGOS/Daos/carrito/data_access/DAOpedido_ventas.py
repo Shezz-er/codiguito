@@ -1,6 +1,5 @@
-from dataclasses import dataclass
-from pedido_ventas import pedido_ventas
-from datetime import datetime
+
+from clases_carrito import *
 import mysql.connector
 
 conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
