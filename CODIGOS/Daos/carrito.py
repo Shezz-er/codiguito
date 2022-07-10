@@ -1,6 +1,8 @@
+from CODIGOS.Daos.DAOclientes import verificarCliente
 from DAOdetalle_pedido_productos import *
 from DAOinventario import *
 from DAOpedido_ventas import *
+from DAOclientes import *
 
 
 import math
@@ -56,20 +58,29 @@ def generarBoleta(pedido):
     return Boleta(pedido,total)
 
 #retorna objeto cliente
-def obtenerClienteRut(rut):
-    #if consultarRut(rut)
-    return
+def existeCliente(rut):
+    if verificarCliente(rut)==1:
+        return True
+    else:
+        return False
 
-def generarFactura(pedido):
+def generarFactura(pedido:Pedido):
     rut=int(input("Ingrese rut de cliente, sin puntos ni guion\n"))
-    cliente=obtenerClienteRut(rut)
+    if existeCliente(rut):
+        cliente=obtenerCliente(rut)
+    else:
+        print("El rut ingresado no está registrado como cliente. Agregue los datos a continuación para registrarlo:")
+        razon=input("Ingrese Razón Social \n")
+        giro=input("Ingrese Giro \n")
+        direccion=input("Ingrese dirección \n")
+        cliente=insertarCliente(rut,razon,giro,direccion)
     neto=obtenerSubtotalNeto(pedido)
     iva=calcularIVA(neto)
     total=neto+iva
-    actualizarPedido(pedido.idpedido,total,2,rut)
-    return
+    actualizarPedido(pedido.idpedido,total,2,cliente.rut)
+    return Factura(pedido,cliente,neto,iva,total)
 
-def imprimirDetalleBoleta(boleta):
+def imprimirDetalleBoleta(boleta:Boleta):
     print("        Código de Producto -- Producto -- Cantidad -- Valor unidad -- Subtotal")
     print("        -----------------------------------------------------------------------")
     for i in boleta.pedido.detalle:
@@ -78,6 +89,13 @@ def imprimirDetalleBoleta(boleta):
         print("        ",detalle.cod_prod," -- ",producto.nom_prod," -- ",detalle.cantidad," -- ",producto.valor," -- ",detalle.cantidad*producto.valor)
     return
 
+def imprimirDetalleFactura(factura:Factura):
+    print("        Código de Producto -- Producto -- Cantidad -- Valor unidad -- Subtotal Neto -- IVA -- Subtotal + IVA")
+    print("        -----------------------------------------------------------------------------------------------------")
+    for i in factura.pedido.detalle:
+        detalle=obtenerDetallePedido(i)
+        producto=obtenerProducto(detalle.cod_prod)
+        print("        ",detalle.cod_prod," -- ",producto.nom_prod," -- ",detalle.cantidad," -- ",producto.valor," -- ",detalle.cantidad*producto.valor," -- ",calcularIVA(detalle.cantidad*producto.valor)," -- ",(detalle.cantidad*producto.valor)+calcularIVA(detalle.cantidad*producto.valor))
 
 
 def vistaPrevia(documento,tipo_documento):
@@ -96,6 +114,9 @@ def vistaPrevia(documento,tipo_documento):
         print("Pedido Nro: ",documento.pedido.idpedido)
         print("Vendedor: ",documento.pedido.vendedor.nombre)
         print("Detalle de Productos\n+++++++++++++++++++++++")
-        imprimirDetalleBoleta(documento)
+        imprimirDetalleFactura(documento)
         print("+++++++++++++++++++++++")
+        print("Total Neto: ",documento.neto)
+        print("IVA: ",documento.iva)
+        print("Total a pagar: ",documento.total)
     return

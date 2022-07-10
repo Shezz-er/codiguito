@@ -272,21 +272,60 @@ class MenuFuncionarios:
                 return MenuFuncionarios.ejecutarMenuJefeventa()
             
         elif opcion==8:
-            dao1.actualizarPersonas
+            idperson=int(input("\nIngrese el Id de la persona que desea modificar: "))
+            conexion = mysql.connector.connect(database="sistema_de_ventas", user="root")
+            cursor = conexion.cursor()
+            sql0 = f"select * from personas where idpersona = '{idperson}'"
+            cursor.execute(sql0)
+            producto = cursor.fetchall()
+            print(producto)
+            print("Si esta es la persona que desea modificar, escriba 1. Si no, precione cualquier otro NÚMERO.\n")
+            opcion=int(input())
+            
+            if opcion==1:
+                print("\nIngrese los nuevos datos de la persona:\n")
+                rut_=input("Rut: ")
+                nombr=(input("Nombre de la persona: "))
+                apellid=(input("Apellido de la persona: "))
+                telefon=int(input("Telefono: "))
+                direccio=input("Dirección: ")
+                corre=input("Correo electrónico: ")
+                contr=input("Contraseña: ")
+                sql = f"UPDATE `personas` SET rut ='{rut_}', nombre_persona ='{nombr}', apellido = '{apellid}' ,direccion = '{direccio}', email_user = '{corre}', password ='{contr}', idrol =1 WHERE idpersona = '{idperson}'"
+                cursor.execute(sql)
+                conexion.commit()
+                print("Persona modificada.")
+                conexion.close()
+                return MenuFuncionarios.ejecutarMenuJefeventa()
+            
+            else:
+                return MenuFuncionarios.ejecutarMenuJefeventa()
             
         elif opcion==9:
-            dao1.listarPersonas
+            conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
+            cursor = conexion.cursor()
+            sql = f"SELECT * FROM `personas` WHERE idrol = 1"
+            cursor.execute(sql)
+            lista=cursor.fetchall()
+            conexion.commit()
+            conexion.close()
+            print("\nID Persona | Rut | Nombre | Apellido | Telefono | Dirección | Correo electrónico | Contraseña | Id rol\n")
+            print(lista)
+            return MenuFuncionarios.ejecutarMenuJefeventa() 
+        #elif opcion==10:
             
         else:
             input("Error, debe ingresar una opción válida.")
+            return MenuFuncionarios.ejecutarMenuJefeventa()
+            
 
     def ejecutarMenuVendedor(vendedor):
         print ("\nBienvenido al Sistema ", vendedor.nombre)
         print ("M E N Ú")
         print ("--------------------------")
         print ("1. Agregar Venta")
-        print ("5. Buscar Producto")
-        print ("6. Listar Productos")
+        print ("2. Buscar Producto")
+        print ("3. Listar Productos")
         print ("\nSeleccione una opción:\n")
         opcion=int(input())        
 
@@ -313,5 +352,9 @@ class MenuFuncionarios:
             elif tipo_doc==2:
                 factura=generarFactura(pedido)
                 vistaPrevia(factura,2)
+        elif opcion==2:
+            busqueda=input("Ingrese código o nombre de producto \n")
+            producto=buscarProducto(busqueda)
+            print("Resultado de busqueda")
 
 # DAOMenuEjecutable.ejecutarMenuVendedor(Vendedor(1,"9766975-6","Rodrigo","Rosales",91924488,"Serena 123","rod_ros@gmail.com","RodROSS321"))
