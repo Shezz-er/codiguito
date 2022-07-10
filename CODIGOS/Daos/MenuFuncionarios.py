@@ -244,7 +244,29 @@ class MenuFuncionarios:
             return MenuFuncionarios.ejecutarMenuJefeventa()
 
         elif opcion==7:
-            dao1.eliminarPersonas
+            conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
+            cursor = conexion.cursor()
+            sql0 = f"select * from personas"
+            cursor.execute(sql0)
+            personas_ant = cursor.fetchall()
+            print("\nInserte los datos del vendedor que desea eliminar:")
+            nombre=input("Nombre: ")
+            rut=input("Rut: ")
+            sql = f"delete from personas where rut = '{rut}' and nombre_persona = '{nombre}'"
+            cursor.execute(sql)
+            sql1 = f"select * from personas"
+            cursor.execute(sql1)
+            personas_desp = cursor.fetchall()
+            if personas_ant==personas_desp:
+                print("No se ha encontrado la persona a eliminar.")
+                conexion.close()
+                return MenuFuncionarios.ejecutarMenuJefeventa()
+                
+            else:
+                conexion.commit()
+                print("Persona eliminada correctamente.")
+                conexion.close()
+                return MenuFuncionarios.ejecutarMenuJefeventa()
             
         elif opcion==8:
             dao1.actualizarPersonas
