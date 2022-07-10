@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from DAOpersonas import DAOpersonas
 from carrito import *
 import mysql.connector
+import datetime
 
 dao1=DAOpersonas
 
@@ -82,7 +83,9 @@ class MenuFuncionarios:
                 ventas = cursor.fetchall()
                 print("\nResultados de la busqueda:\n")
                 print("ID pedido | Id vendedor | Fecha | Monto | Id tipo documento | Rut cliente | Nombre Vendedor | Apellido Vendedor | ")
-                print(ventas)
+                #print(ventas)
+                for venta in ventas:
+                    print(venta)
                 return MenuFuncionarios.ejecutarMenuJefeventa()
 
             else:
