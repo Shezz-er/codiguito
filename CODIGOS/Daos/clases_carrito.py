@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime
+
 @dataclass
 class Vendedor:
     id: int
@@ -55,3 +55,19 @@ class Registro_detalle:
     idpedido: int
     cantidad: int
 
+@dataclass
+class Login:
+    id:int
+    password:str
+
+@dataclass
+class Persona:
+    idpersona: int
+    rut: str
+    nombre_persona: str
+    apellido: str
+    telefono: int
+    direccion: str
+    email_user: str
+    password: str
+    idrol: int
