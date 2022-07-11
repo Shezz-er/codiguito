@@ -311,14 +311,60 @@ class MenuFuncionarios:
             conexion.close()
             print("\nID Persona | Rut | Nombre | Apellido | Telefono | Dirección | Correo electrónico | Contraseña | Id rol\n")
             print(lista)
-            return MenuFuncionarios.ejecutarMenuJefeventa() 
-        #elif opcion==10:
+            return MenuFuncionarios.ejecutarMenuJefeventa()
             
+        elif opcion==10:
+            conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
+            cursor = conexion.cursor()
+            sql0 = f"Select * from estado_jornada"
+            cursor.execute(sql0)
+            estado_ant=cursor.fetchall()
+            print("\n1. Iniciar jornada diaria.")
+            print("2. Terminar jornada diaria.")
+            opcion=int(input("Ingrese una opción: "))
+            if opcion==1:
+                sql = f"update estado_jornada set estado = 1"
+                cursor.execute(sql)
+                sql2 = f"select * from estado_jornada"
+                cursor.execute(sql2)
+                estado_desp=cursor.fetchall()
+                conexion.commit()
+                if estado_ant==estado_desp:
+                    print("El estado de la jornada ya estaba iniciado.")
+                    cursor.close()
+                    return MenuFuncionarios.ejecutarMenuJefeventa()
+
+                else:
+                    print("Se ha iniciado la jornada diaria.")
+                    cursor.close()
+                    return MenuFuncionarios.ejecutarMenuJefeventa()
+            
+            elif opcion==2:
+                sql = f"update estado_jornada set estado = 0"
+                cursor.execute(sql)
+                sql2 = f"select * from estado_jornada"
+                cursor.execute(sql2)
+                estado_desp=cursor.fetchall()
+                conexion.commit()
+                if estado_ant==estado_desp:
+                    print("El estado de la jornada ya estaba apagado.")
+                    cursor.close()
+                    return MenuFuncionarios.ejecutarMenuJefeventa()
+
+                else:
+                    print("Se ha finalizado la jornada diaria.")
+                    cursor.close()
+                    return MenuFuncionarios.ejecutarMenuJefeventa()
+            
+            else:
+                print("Debe seleccionar una opción válida.")
+                cursor.close()
+                return MenuFuncionarios.ejecutarMenuJefeventa()
+
         else:
             input("Error, debe ingresar una opción válida.")
             return MenuFuncionarios.ejecutarMenuJefeventa()
             
-
     def ejecutarMenuVendedor(vendedor):
         print ("\nBienvenido al Sistema ", vendedor.nombre)
         print ("M E N Ú")
