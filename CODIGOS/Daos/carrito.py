@@ -15,6 +15,7 @@ def obtenerUltimoIDPedido():
 #imprime todos los productos del sistema con codigo y nombre
 def mostrarProductos():
     productos=listarProductos()
+    print("        Código de Producto --- Nombre de Producto\n")
     for producto in productos:
         print(producto+1,".  ",productos[producto][0]," --- ",productos[producto][1])
     return

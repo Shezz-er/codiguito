@@ -348,13 +348,39 @@ class MenuFuncionarios:
             tipo_doc=int(input("Seleccione tipo de documento\n [1] Boleta \n [2] Factura \n"))
             if tipo_doc==1:
                 boleta = generarBoleta(pedido)
-                vistaPrevia(boleta,1)    
+                vistaPrevia(boleta,1)
+                print("=========================================================================")
+                print("")
+                if int(input("¿Desea volver al menú? \n1. Si\n2. No\n"))==1:
+                    return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
+                else:
+                    return print("Has cerrado la sesión.")    
             elif tipo_doc==2:
                 factura=generarFactura(pedido)
                 vistaPrevia(factura,2)
+                print("=========================================================================")
+                print("")
+                if int(input("¿Desea volver al menú? \n1. Si\n2. No\n"))==1:
+                    return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
+                else:
+                    return print("Has cerrado la sesión.")
         elif opcion==2:
             busqueda=input("Ingrese código o nombre de producto \n")
             producto=buscarProducto(busqueda)
-            print("Resultado de busqueda")
-
+            print("Resultado de busqueda:\n \n")
+            print("Código de producto:\n        ",producto.cod_prod)
+            print("Nombre del producto:\n        ",producto.nom_prod)
+            print("Precio unitario:\n        ",producto.valor)
+            print("\n \n")
+            if int(input("¿Desea volver al menú? \n1. Si\n2. No\n"))==1:
+                return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
+            else:
+                return print("Has cerrado la sesión.")
+        elif opcion==3:
+            mostrarProductos()
+            print("\n \n")
+            if int(input("¿Desea volver al menú? \n1. Si\n2. No\n"))==1:
+                return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
+            else:
+                return print("Has cerrado la sesión.")
 # DAOMenuEjecutable.ejecutarMenuVendedor(Vendedor(1,"9766975-6","Rodrigo","Rosales",91924488,"Serena 123","rod_ros@gmail.com","RodROSS321"))
