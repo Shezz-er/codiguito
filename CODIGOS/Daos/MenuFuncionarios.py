@@ -11,8 +11,8 @@ dao1=DAOpersonas
 
 class MenuFuncionarios:
 
-    def ejecutarMenuJefeventa():
-        print ("\nBienvenido,\n")
+    def ejecutarMenuJefeventa(usuario):
+        print (f"\nBienvenido, {usuario.nombre_persona}\n")
         print ("M E N Ú")
         print ("--------------------------")
         print ("1. Buscar Venta")

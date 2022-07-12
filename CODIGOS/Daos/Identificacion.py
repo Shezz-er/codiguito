@@ -20,7 +20,7 @@ class Identificacion:
             user=DAOpersonas.getUser(login.id)
 
             if user.idrol==2:
-                dao.ejecutarMenuJefeventa()
+                dao.ejecutarMenuJefeventa(user)
             else:
                 dao.ejecutarMenuVendedor(Vendedor(user.idpersona,user.rut,user.nombre_persona,user.apellido,user.telefono,user.direccion,user.email_user,user.password))
         else:

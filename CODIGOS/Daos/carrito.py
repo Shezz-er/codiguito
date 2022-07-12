@@ -17,7 +17,7 @@ def mostrarProductos():
     productos=listarProductos()
     print("        Código de Producto --- Nombre de Producto\n")
     for producto in productos:
-        print(producto+1,".  ",productos[producto][0]," --- ",productos[producto][1])
+        print(productos.index(producto)+1,".  ",productos[producto][0]," --- ",productos[producto][1])
     return
 
 #devuelve Producto
@@ -114,6 +114,10 @@ def vistaPrevia(documento,tipo_documento):
         print("----------------------------")
         print("Pedido Nro: ",documento.pedido.idpedido)
         print("Vendedor: ",documento.pedido.vendedor.nombre)
+        print("Rut de Cliente: ",documento.cliente.rut)
+        print("Razón Social: ",documento.cliente.razon)
+        print("Giro: ",documento.cliente.giro)
+        print("Dirección: ",documento.cliente.direccion)
         print("Detalle de Productos\n+++++++++++++++++++++++")
         imprimirDetalleFactura(documento)
         print("+++++++++++++++++++++++")
