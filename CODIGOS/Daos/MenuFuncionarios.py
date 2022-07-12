@@ -67,10 +67,10 @@ class MenuFuncionarios:
                         print("Apellido:")
                         print(nombreapellido[1])
                         conexion.close()
-                        return MenuFuncionarios.ejecutarMenuJefeventa()
+                        return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
         
                     else:
-                        return MenuFuncionarios.ejecutarMenuJefeventa()
+                        return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
         
             elif opcion2==2:
                 conexion = mysql.connector.connect(database="sistema_de_ventas", user="root")
@@ -86,10 +86,10 @@ class MenuFuncionarios:
                 #print(ventas)
                 for venta in ventas:
                     print(venta)
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
 
             else:
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
 
         elif opcion==2:
             print("1.Listar Ventas con Boleta")
@@ -106,7 +106,7 @@ class MenuFuncionarios:
                 conexion.close()
                 print("ID pedido | Id vendedor | Fecha | Monto | Id tipo documento | Rut cliente")
                 print(filas)                    
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
 
             elif opcion==2:
                 sql = "select * from pedido_ventas where iddoc = 2"
@@ -115,10 +115,10 @@ class MenuFuncionarios:
                 conexion.close()
                 print("ID pedido | Id vendedor | Fecha | Monto | Id tipo documento | Rut cliente")
                 print(filas)
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             
             else:
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
 
         elif opcion==3:
             conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
@@ -138,7 +138,7 @@ class MenuFuncionarios:
             conexion.close()
             print("\nCodigo producto | Nombre producto | Stock disponible | Precio producto | Id categoría")
             print(resultado)
-            MenuFuncionarios.ejecutarMenuJefeventa()
+            MenuFuncionarios.ejecutarMenuJefeventa(usuario)
     
         elif opcion==4:
             print("1. Eliminar mediante Nombre de producto.")
@@ -161,7 +161,7 @@ class MenuFuncionarios:
                 if inv_antes==inv_desp:
                     print("No se ha encontrado el producto a eliminar.")
                     conexion.close()
-                    return MenuFuncionarios.ejecutarMenuJefeventa()
+                    return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
                 
                 else:
                     conexion.commit()
@@ -184,16 +184,16 @@ class MenuFuncionarios:
                 if inv_antes==inv_desp:
                     print("No se ha encontrado el producto a eliminar.")
                     conexion.close()
-                    return MenuFuncionarios.ejecutarMenuJefeventa()
+                    return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
                 
                 else:
                     conexion.commit()
                     print("Producto eliminado correctamente.")
                     conexion.close()
-                    return MenuFuncionarios.ejecutarMenuJefeventa()
+                    return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             else:
                 print("Seleccione una opción válida.\n")
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
 
         elif opcion==5:
             codprod=int(input("\nIngrese el Codigo del producto que desea modificar: "))
@@ -223,10 +223,10 @@ class MenuFuncionarios:
                 conexion.commit()
                 print("Producto modificado.")
                 conexion.close()
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             
             else:
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
 
         elif opcion==6:
             conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
@@ -244,7 +244,7 @@ class MenuFuncionarios:
             conexion.commit()
             conexion.close()
             print("\nSe ha ingresado el vendedor con éxito.\n")
-            return MenuFuncionarios.ejecutarMenuJefeventa()
+            return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
 
         elif opcion==7:
             conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
@@ -263,13 +263,13 @@ class MenuFuncionarios:
             if personas_ant==personas_desp:
                 print("No se ha encontrado la persona a eliminar.")
                 conexion.close()
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
                 
             else:
                 conexion.commit()
                 print("Persona eliminada correctamente.")
                 conexion.close()
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             
         elif opcion==8:
             idperson=int(input("\nIngrese el Id de la persona que desea modificar: "))
@@ -296,10 +296,10 @@ class MenuFuncionarios:
                 conexion.commit()
                 print("Persona modificada.")
                 conexion.close()
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             
             else:
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             
         elif opcion==9:
             conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
@@ -311,7 +311,7 @@ class MenuFuncionarios:
             conexion.close()
             print("\nID Persona | Rut | Nombre | Apellido | Telefono | Dirección | Correo electrónico | Contraseña | Id rol\n")
             print(lista)
-            return MenuFuncionarios.ejecutarMenuJefeventa()
+            return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             
         elif opcion==10:
             conexion = mysql.connector.connect(database= "sistema_de_ventas", user="root")
@@ -332,12 +332,12 @@ class MenuFuncionarios:
                 if estado_ant==estado_desp:
                     print("El estado de la jornada ya estaba iniciado.")
                     cursor.close()
-                    return MenuFuncionarios.ejecutarMenuJefeventa()
+                    return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
 
                 else:
                     print("Se ha iniciado la jornada diaria.")
                     cursor.close()
-                    return MenuFuncionarios.ejecutarMenuJefeventa()
+                    return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             
             elif opcion==2:
                 sql = f"update estado_jornada set estado = 0"
@@ -349,21 +349,21 @@ class MenuFuncionarios:
                 if estado_ant==estado_desp:
                     print("El estado de la jornada ya estaba apagado.")
                     cursor.close()
-                    return MenuFuncionarios.ejecutarMenuJefeventa()
+                    return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
 
                 else:
                     print("Se ha finalizado la jornada diaria.")
                     cursor.close()
-                    return MenuFuncionarios.ejecutarMenuJefeventa()
+                    return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             
             else:
                 print("Debe seleccionar una opción válida.")
                 cursor.close()
-                return MenuFuncionarios.ejecutarMenuJefeventa()
+                return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
 
         else:
             input("Error, debe ingresar una opción válida.")
-            return MenuFuncionarios.ejecutarMenuJefeventa()
+            return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             
     def ejecutarMenuVendedor(vendedor):
         print ("\nBienvenido al Sistema ", vendedor.nombre)
