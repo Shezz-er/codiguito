@@ -380,7 +380,7 @@ class MenuFuncionarios:
             while True:
                 busqueda=input("Ingrese el producto: \n")
                 producto=buscarProducto(busqueda)
-                cantidad=int(input("Ingrese cantidad \n"))
+                cantidad=int(input("Ingrese cantidad: \n"))
                 agregarAlCarro(pedido,producto,cantidad)
                 repetir=input("¿Desea agregar otro producto? SI[s] / NO[n] \n")
                 if repetir=="s":
@@ -411,7 +411,7 @@ class MenuFuncionarios:
                 else:
                     return print("Has cerrado la sesión.")
         elif opcion==2:
-            busqueda=input("Ingrese código o nombre de producto \n")
+            busqueda=input("Ingrese código o nombre de producto: \n")
             producto=buscarProducto(busqueda)
             print("Resultado de busqueda:\n \n")
             print("Código de producto:\n        ",producto.cod_prod)
