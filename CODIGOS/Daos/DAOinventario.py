@@ -75,7 +75,7 @@ def obtenerProducto(atributo):
     return Producto(resultado[0],resultado[1],resultado[2])
 
 def listarProductos():
-    query="SELECT * FROM inventario"
+    query="SELECT * FROM inventario ;"
     cursor.execute(query)
     lista=cursor.fetchall()
     return lista

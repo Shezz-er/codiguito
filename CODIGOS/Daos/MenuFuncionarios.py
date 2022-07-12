@@ -386,9 +386,6 @@ class MenuFuncionarios:
                 if repetir=="s":
                     True
                 else:
-                    print(obtenerSubtotalProducto(pedido.detalle[0]))
-                    print(pedido.idpedido)
-                    print(pedido.vendedor.id)
                     break
 
             tipo_doc=int(input("Seleccione tipo de documento\n [1] Boleta \n [2] Factura \n"))
@@ -429,4 +426,4 @@ class MenuFuncionarios:
                 return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
             else:
                 return print("Has cerrado la sesión.")
-# DAOMenuEjecutable.ejecutarMenuVendedor(Vendedor(1,"9766975-6","Rodrigo","Rosales",91924488,"Serena 123","rod_ros@gmail.com","RodROSS321"))
+MenuFuncionarios.ejecutarMenuVendedor(Vendedor(1,"9766975-6","Rodrigo","Rosales",91924488,"Serena 123","rod_ros@gmail.com","RodROSS321"))

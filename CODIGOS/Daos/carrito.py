@@ -1,4 +1,4 @@
-from CODIGOS.Daos.DAOclientes import verificarCliente
+from DAOclientes import verificarCliente
 from DAOdetalle_pedido_productos import *
 from DAOinventario import *
 from DAOpedido_ventas import *
@@ -16,8 +16,8 @@ def obtenerUltimoIDPedido():
 def mostrarProductos():
     productos=listarProductos()
     print("        Código de Producto --- Nombre de Producto\n")
-    for producto in productos:
-        print(productos.index(producto)+1,".  ",productos[producto][0]," --- ",productos[producto][1])
+    for producto in range(len(productos)):
+        print("        ",producto+1,".  ",productos[producto][0]," --- ",productos[producto][1])
     return
 
 #devuelve Producto
