@@ -125,3 +125,9 @@ def vistaPrevia(documento,tipo_documento):
         print("IVA: ",documento.iva)
         print("Total a pagar: ",documento.total)
     return
+
+def estadoJornada():
+    query="SELECT * FROM estado_jornada ;"
+    cursor.execute(query)
+    estado=cursor.fetchone()
+    return estado[0]

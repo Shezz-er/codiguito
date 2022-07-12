@@ -376,37 +376,41 @@ class MenuFuncionarios:
         opcion=int(input())        
 
         if opcion==1:
-            pedido= generarPedido(vendedor)
-            while True:
-                busqueda=input("Ingrese el producto: \n")
-                producto=buscarProducto(busqueda)
-                cantidad=int(input("Ingrese cantidad: \n"))
-                agregarAlCarro(pedido,producto,cantidad)
-                repetir=input("¿Desea agregar otro producto? SI[s] / NO[n] \n")
-                if repetir=="s":
-                    True
-                else:
-                    break
+            if estadoJornada()==1:
+                pedido= generarPedido(vendedor)
+                while True:
+                    busqueda=input("Ingrese el producto: \n")
+                    producto=buscarProducto(busqueda)
+                    cantidad=int(input("Ingrese cantidad: \n"))
+                    agregarAlCarro(pedido,producto,cantidad)
+                    repetir=input("¿Desea agregar otro producto? SI[s] / NO[n] \n")
+                    if repetir=="s":
+                        True
+                    else:
+                        break
 
-            tipo_doc=int(input("Seleccione tipo de documento\n [1] Boleta \n [2] Factura \n"))
-            if tipo_doc==1:
-                boleta = generarBoleta(pedido)
-                vistaPrevia(boleta,1)
-                print("=========================================================================")
-                print("")
-                if int(input("¿Desea volver al menú? \n1. Si\n2. No\n"))==1:
-                    return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
-                else:
-                    return print("Has cerrado la sesión.")    
-            elif tipo_doc==2:
-                factura=generarFactura(pedido)
-                vistaPrevia(factura,2)
-                print("=========================================================================")
-                print("")
-                if int(input("¿Desea volver al menú? \n1. Si\n2. No\n"))==1:
-                    return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
-                else:
-                    return print("Has cerrado la sesión.")
+                tipo_doc=int(input("Seleccione tipo de documento\n [1] Boleta \n [2] Factura \n"))
+                if tipo_doc==1:
+                    boleta = generarBoleta(pedido)
+                    vistaPrevia(boleta,1)
+                    print("=========================================================================")
+                    print("")
+                    if int(input("¿Desea volver al menú? \n1. Si\n2. No\n"))==1:
+                        return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
+                    else:
+                        return print("Has cerrado la sesión.")    
+                elif tipo_doc==2:
+                    factura=generarFactura(pedido)
+                    vistaPrevia(factura,2)
+                    print("=========================================================================")
+                    print("")
+                    if int(input("¿Desea volver al menú? \n1. Si\n2. No\n"))==1:
+                        return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
+                    else:
+                        return print("Has cerrado la sesión.")
+            else:
+                input("La jornada aún no comienza. El Jefe de Ventas debe iniciarla. Presione cualquier tecla para volver.")
+                return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
         elif opcion==2:
             busqueda=input("Ingrese código o nombre de producto: \n")
             producto=buscarProducto(busqueda)
