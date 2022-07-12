@@ -430,4 +430,4 @@ class MenuFuncionarios:
                 return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
             else:
                 return print("Has cerrado la sesión.")
-MenuFuncionarios.ejecutarMenuVendedor(Vendedor(1,"9766975-6","Rodrigo","Rosales",91924488,"Serena 123","rod_ros@gmail.com","RodROSS321"))
+#MenuFuncionarios.ejecutarMenuVendedor(Vendedor(1,"9766975-6","Rodrigo","Rosales",91924488,"Serena 123","rod_ros@gmail.com","RodROSS321"))
