@@ -11,8 +11,8 @@ class Identificacion:
     def menuIdentificacion():
         print ("I D E N T I F I Q U E S E")
         print ("--------------------------")
-        idpersona=int(input("ingrese id usuario: "))
-        password=input("Ingrese contraseña: ")
+        idpersona=int(input("Ingrese su Id de Usuario: "))
+        password=input("Ingrese su Contraseña: ")
 
         login = Login(idpersona,password)
         if exists(login):
