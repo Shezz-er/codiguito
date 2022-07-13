@@ -37,7 +37,7 @@ class MenuFuncionarios:
 
             if opcion2==1:
                 conexion = mysql.connector.connect(database="sistema_de_ventas", user="root")
-                cursor = conexion.cursor()
+                cursor = conexion.cursor(buffered=True)
                 print("Ingrese la fecha de los pedidos que desea ver en formato AAAA-MM-DD: ")
                 fecha = input()
                 sql = f"select count(*) from pedido_ventas where fecha = '{fecha}'"
@@ -45,6 +45,7 @@ class MenuFuncionarios:
                 ventas = cursor.fetchone()
                 if (ventas[0])==0:
                     print("No se encuentran ventas en la fecha especificada.")
+                    return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
                 
                 else:
                     sql = f"select * from pedido_ventas where fecha = '{fecha}'"
@@ -58,13 +59,13 @@ class MenuFuncionarios:
 
                     if opcion3==1:
                         print("Ingrese el Id del vendedor")
-                        idpersona = input()
-                        sql1 = f"select nombre_persona, apellido from personas where idpersona = '{idpersona}'"
+                        idpersona = int(input())
+                        sql1 = f"select nombre_persona, apellido from personas where idpersona = {idpersona}"
                         cursor.execute(sql1)
                         nombreapellido = cursor.fetchone()
-                        print("\nNombre:")
+                        print("\nNombre: ")
                         print(nombreapellido[0])
-                        print("Apellido:")
+                        print("\nApellido: ")
                         print(nombreapellido[1])
                         conexion.close()
                         return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
@@ -127,6 +128,13 @@ class MenuFuncionarios:
             nomprod = input("Nombre del producto: ")
             stockprod = int(input("Stock disponible del producto: "))
             precioprod = int(input("Precio del producto: "))
+            sql0 = f"select * from categorias"
+            cursor.execute(sql0)
+            categoriasdisp=cursor.fetchall()
+            catdisp=cursor.fetchone()
+            print("\nCategorias disponibles:")
+            print("ID categoria | Nombre categoria | Descripcion")
+            print(categoriasdisp,"\n")
             idcategoria = int(input("Id Categoría del producto: "))
             sql = f"INSERT INTO `inventario`(`nom_prod`, `stock_prod`, `precio_prod`, `idcategorias`) VALUES ('{nomprod}','{stockprod}','{precioprod}','{idcategoria}')"
             cursor.execute(sql)
@@ -167,7 +175,7 @@ class MenuFuncionarios:
                     conexion.commit()
                     print("Producto eliminado correctamente.")
                     conexion.close()
-                    return MenuFuncionarios.ejecutarMenuJefeventa()
+                    return MenuFuncionarios.ejecutarMenuJefeventa(usuario)
             
             elif opcion==2:
                 conexion = mysql.connector.connect(database="sistema_de_ventas", user="root")
@@ -430,4 +438,3 @@ class MenuFuncionarios:
                 return MenuFuncionarios.ejecutarMenuVendedor(vendedor)
             else:
                 return print("Has cerrado la sesión.")
-#MenuFuncionarios.ejecutarMenuVendedor(Vendedor(1,"9766975-6","Rodrigo","Rosales",91924488,"Serena 123","rod_ros@gmail.com","RodROSS321"))
